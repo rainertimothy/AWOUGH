@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define MAX 100
 
 FILE *listbuku;
 FILE *userlog;
@@ -79,6 +82,31 @@ void insertion()
     fclose(userlog);
 }
 
+void borrow(){
+
+    listbuku = fopen("listbuku.txt", "r");
+    i = 0;
+    char singleline[50];
+    printf("Judul Buku :\n");
+    while(!feof(listbuku)){
+        fgets(singleline, 50, listbuku);
+        printf("%d. %s\n", i + 1,singleline);
+        i++;
+    }
+    char choice;
+    puts("Please Choose a book :\n>>");
+    char borrow[50];
+    scanf("[^\n]", borrow);
+
+    while(!feof(listbuku)){
+        if(borrow == ){
+            printf("The book you're borrowing is : %s", borrow);
+        }
+    }
+    fclose(listbuku);
+
+}
+
 void stylemenu(){
     int option;
     do{
@@ -99,6 +127,7 @@ void stylemenu(){
         reading();
         break;
         case 3:
+        borrow();
         break;
         case 4:
         printf("Alongside courage and perserverance\n");
@@ -108,13 +137,12 @@ void stylemenu(){
         getchar();getchar();
         system("CLS");
         exit(0);
-        default:
+        default:    
         break;
     }
 
     }while(option != 4);
 }
-
 
 void main(){
     stylemenu();
