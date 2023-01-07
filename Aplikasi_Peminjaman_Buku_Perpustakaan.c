@@ -3,6 +3,7 @@
 
 FILE *listbuku;
 FILE *userlog;
+FILE *userData;
 int i;
 
 typedef struct{
@@ -115,9 +116,28 @@ void stylemenu(){
     }while(option != 4);
 }
 
+void registration (){
+    // variables
+    char userName[20];
+    char password[20];
+
+    userData = fopen("userData.txt", "a");
+
+    // user name
+    printf("Insert Username (max 20 characters): ");
+    scanf("%s", &userName);
+    fprintf(userData, "%s", userName);
+
+    // password
+    printf("Insert Password (max 20 characters): ");
+    scanf("%s", &password);
+    fprintf(userData, "#%s\n", password);
+
+    fclose(userData);
+}
 
 void main(){
-    stylemenu();
+    // stylemenu();
 }
 
 void booking(){
