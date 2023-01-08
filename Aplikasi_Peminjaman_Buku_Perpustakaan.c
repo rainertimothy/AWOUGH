@@ -358,6 +358,8 @@ void login(){
     printf("Enter your password: ");
     scanf("%s", inputPassword);
 
+    printf("Loading..\n\n");
+
     while (!feof(userData))
     {
     // User Name compare
@@ -377,14 +379,12 @@ void login(){
         }
     }
 
-    if (userNameCmp != 0 && passwordCmp != 0)
-    {
-        printf("Access denied");
-    }
+    if (userNameCmp != 0 || passwordCmp != 0) {printf("Access denied\n");}
 }
 
 void main(){
     // stylemenu();
+    login();
 }
 
 void booking(){
