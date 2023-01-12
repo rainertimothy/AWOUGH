@@ -17,7 +17,7 @@ typedef struct{
 
 typedef struct{
     char judul[50];
-    int harga;
+    char angka[2];
 }buku;
 
 buku buku1;
@@ -71,7 +71,7 @@ void reading(){
 void insertion()
 {
     studentdata fivestudents;
-    int i;
+    i = 0;
     userlog = fopen("Userlog.txt", "a");
         puts("Insert name: ");
         getchar();
@@ -86,58 +86,34 @@ void insertion()
 void borrow(){
 
     listbuku = fopen("listbuku.txt", "r");
+    char singleline[50];
     i = 0;
-    char singleline[100];
-    char baru[100];
     printf("Judul Buku :\n");
-    while(fscanf(listbuku, " %[^\n]", buku1.judul) == 1){
-        printf("%d. %s\n", i + 1, buku1.judul);
+    while(!feof(listbuku)){
+        fgets(singleline, 50, listbuku);
+        printf("%d. %s\n", i + 1, singleline);
         i++;
     }
     fclose(listbuku);
-    printf("\nPlease Choose a book :\n\t>> ");
-    char borrow[100];
-    scanf(" %[^\n]", borrow);
+    puts("Please Choose a book :\n>>");
+    char borrow[50];
+    scanf("%s", borrow);
     listbuku = fopen("listbuku.txt", "r");
-    int days;
-    while(fscanf(listbuku, " %[^\n]", buku1.judul) == 1){
-        if(fscanf(listbuku, " %[^\n]", buku1.judul) == *borrow){
-            printf("The book you're borrowing is : %s\n", buku1.judul);  
-            printf("Please input the amount of days (1-14)\n\t>> ");
-            scanf("%d", &days);  
+    while(fscanf(listbuku, "%s %s", buku1.angka, buku1.judul)){
+        
+        if((strcmp(borrow, buku1.angka)) == 2){
+            printf("The book you're borrowing is : %s\n", buku1.judul);
             break;
         }else{
-            printf("The book you chose isn't available\n\n\n");
+            printf("The book you chose isn't available\n");
             break;
         }
     }
+    fclose(listbuku);
 
     
-    if(days >= 1 && days <= 14){
-        printf("Thanks for borrowing our book!\n");
-    }
-    fclose(listbuku);
+    
 }
-void returning(){
-    listbuku = fopen("listbuku.txt", "a");
-    printf("Please input the title of the book you wanted to return\n\t>> ");
-    char returning[20];
-    scanf(" %[^\n]", returning);
-    printf("Are you sure this is the book? (Y/N)");
-    char choice;
-    scanf(" %c", &choice);
-    switch(choice){
-        case 'Y':
-            printf("Thanks for returning the book!\n");
-            break;
-        case 'N':
-            break;
-        default:
-            printf("Error.\n");
-            exit(1);
-    } 
-}
-
 
 void stylemenu(){
     int option;
@@ -147,8 +123,7 @@ void stylemenu(){
     printf("|    1. Insert Userdata         |\n");
     printf("|    2. Check Available Books   |\n");
     printf("|    3. Borrow a Book           |\n");
-    printf("|    4. Return a Book           |\n");
-    printf("|    5. Exit the program.       |\n");
+    printf("|    4. Exit the program.       |\n");
     printf("|-------------------------------|\n");
     
     scanf(" %d", &option);
@@ -163,9 +138,6 @@ void stylemenu(){
         borrow();
         break;
         case 4:
-        returning();
-        break;
-        case 5:
         printf("Alongside courage and perserverance\n");
         printf("  we shape and define our future\n");
         printf("             ~ 22-1 ~\n");
@@ -177,8 +149,9 @@ void stylemenu(){
         break;
     }
 
-    }while(option != 5);
+    }while(option != 4);
 }
+
 void registration (){
     // variables
     char userName[20];
