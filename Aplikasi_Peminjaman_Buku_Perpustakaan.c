@@ -286,14 +286,31 @@ void insertion()
 
 void stylemenu(){
     int option;
+    printf("|===============================|\n");
+    printf("|    Today a reader..,          |\n");
+    printf("|        Tomorrow a leader~     |\n");
+    printf("|                               |\n");
+    printf("|                               |\n");
+    printf("|          Welcome to           |\n");
+    printf("|         The  Library          |\n");
+    printf("|                               |\n");
+    printf("|         Press ENTER           |\n");
+    printf("|===============================|\n");
+
+    if (getchar()){
     do{
-    printf("|-------------------------------|\n");
-    printf("|    Welcome To The Main Menu.  |\n");
+    printf("|===============================|\n");
+    printf("|                               |\n");
+    printf("|  How would you like to        |\n");
+    printf("|  upgrade yourself today:      |\n");
+    printf("|                               |\n");
     printf("|    1. Insert Userdata         |\n");
     printf("|    2. Check Available Books   |\n");
     printf("|    3. Borrow a Book           |\n");
     printf("|    4. Exit the program.       |\n");
-    printf("|-------------------------------|\n");
+    printf("|===============================|\n");
+    
+    
     
     scanf(" %d", &option);
     switch(option){
@@ -318,6 +335,7 @@ void stylemenu(){
     }
 
     }while(option != 4);
+    }
 }
 
 void registration (){
@@ -383,8 +401,8 @@ void login(){
 }
 
 void main(){
-    // stylemenu();
-    login();
+    stylemenu();
+    // login();
 }
 
 void booking(){
