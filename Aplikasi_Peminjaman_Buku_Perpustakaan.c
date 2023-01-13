@@ -150,26 +150,34 @@ void returning(){
     char judul[50];
     int cmp;
     bool isFound;
-    scanf("%[^\n]", returning);
+    scanf("%[^\n]", &returning);
 
     while(!feof(listbuku)) {
-        fscanf(listbuku, "%[^\n]", judul);
+        // rewind(listbuku);
+        fscanf(listbuku, "%[^\n]\n", judul);
+        // printf("%s", judul);
         cmp = strcmp(returning, judul);
+        // printf("%d", cmp);
         if(cmp==0) {
             printf("Thank you for returning the book!\n");
             isFound = true;
             break;
         }
     }
-        if (cmp != 0)
-        {
-            printf("Book not found in database!");
-        }
+         if (cmp != 0)
+         {
+             printf("Book not found in database!");
+         }
         
     if (isFound == true)
     {
-        fprintf(replace, "%s", returning);
+        fprintf(replace, "\n%s", returning);
+        // printf("1");
     }
+//    } else {
+//        printf("Book not found in database!");
+//        printf("2");
+//    }
     
     fclose(listbuku);
     fclose(replace);
