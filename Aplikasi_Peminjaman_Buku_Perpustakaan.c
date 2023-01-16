@@ -112,10 +112,10 @@ void borrow(){
     
     int cmp;
     int days;
-    char empty[100] = "";
-    char read[100];
-    int size = sizeof(borrow);
-    printf("%s\n", borrow);
+    // char empty = '\0';
+    // char read[100];
+    // int size = sizeof(borrow);
+    // printf("%s\n", borrow);
     cmp = strcmp(borrow, buku1.judul);
     printf("Please enter the days you want to borrow this book\n>>");
     scanf("%d", &days);
@@ -123,10 +123,10 @@ void borrow(){
     rewind(listbuku);
     if(days >= 1 && days <= 14){
         while (!feof(listbuku)) {
-        fscanf(listbuku, " %[^\n]", singleline);
         if (strcmp(singleline, borrow) == 0) {
+        fscanf(listbuku, " %[^\n]", singleline);
  
-            strcpy(singleline, empty);
+            strcpy(singleline, "#");
         }
         fprintf(replace, "%s\n", singleline);
             
@@ -319,10 +319,12 @@ void login(){
 void main(){
     // stylemenu();
     // login();
-    returning();
-    // borrow();
+    // returning();
+    borrow();
 }
 
 void booking(){
 
 }
+
+//note: empty line diganti pake (#), pas returning --> nyari (#) --> strcpy judul yg diinput ke (#)
