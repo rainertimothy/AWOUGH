@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define MAX 100;
 
@@ -140,23 +141,59 @@ void borrow(){
 
 
 void returning(){
-    listbuku = fopen("listbuku.txt", "a");
+    listbuku = fopen("listbuku.txt", "r");
+    replace = fopen("replace.txt", "a");
+
     printf("Please input the title of the book you wanted to return\n\t>> ");
+    
     char returning[20];
-    scanf(" %[^\n]", returning);
-    printf("Are you sure this is the book? (Y/N)");
-    char choice;
-    scanf(" %c", &choice);
-    switch(choice){
-        case 'Y':
-            printf("Thanks for returning the book!\n");
+    char judul[50];
+    int cmp;
+    bool isFound;
+    scanf("%[^\n]", &returning);
+
+    while(!feof(listbuku)) {
+        // rewind(listbuku);
+        fscanf(listbuku, "%[^\n]\n", judul);
+        // printf("%s", judul);
+        cmp = strcmp(returning, judul);
+        // printf("%d", cmp);
+        if(cmp==0) {
+            printf("Thank you for returning the book!\n");
+            isFound = true;
             break;
-        case 'N':
-            break;
-        default:
-            printf("Error.\n");
-            exit(1);
-    } 
+        }
+    }
+         if (cmp != 0)
+         {
+             printf("Book not found in database!");
+         }
+        
+    if (isFound == true)
+    {
+        fprintf(replace, "\n%s", returning);
+        // printf("1");
+    }
+//    } else {
+//        printf("Book not found in database!");
+//        printf("2");
+//    }
+    
+    fclose(listbuku);
+    fclose(replace);
+    // printf("Are you sure this is the book? (Y/N)");
+    // char choice;
+    // scanf(" %c", &choice);
+    // switch(choice){
+    //     case 'Y':
+    //         printf("Thanks for returning the book!\n");
+    //         break;
+    //     case 'N':
+    //         break;
+    //     default:
+    //         printf("Error.\n");
+    //         exit(1);
+    // } 
 }
 
 
@@ -280,11 +317,12 @@ void login(){
 }
 
 void main(){
-    stylemenu();
+    // stylemenu();
     // login();
+    returning();
+    // borrow();
 }
 
 void booking(){
 
 }
-
