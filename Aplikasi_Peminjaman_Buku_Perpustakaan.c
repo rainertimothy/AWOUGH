@@ -199,7 +199,7 @@ void returning(){
     char returning[20];
     char judul[50];
     int cmp;
-    bool isFound;
+    bool isFound = false;
     scanf("%[^\n]", &returning);
 
     while(!feof(listbuku)) {
@@ -217,13 +217,14 @@ void returning(){
          if (cmp != 0)
          {
              printf("Book not found in database!");
+             isFound = false;
          }
         
     if (isFound == true)
     {
-        fprintf(replace, "\n%s", returning);
         // printf("1");
     }
+        fprintf(replace, "\n%s", returning);
 //    } else {
 //        printf("Book not found in database!");
 //        printf("2");
