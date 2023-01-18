@@ -11,6 +11,7 @@ FILE *userData;
 FILE *replace;
 int i;
 char ch[100];
+bool acc;
 
 typedef struct{
 
@@ -131,7 +132,7 @@ void borrow(){
         fprintf(replace, "%s\n", singleline);
             
     }
-            
+    printf("Thanks for borrowing the book!\n");       
         }
     
     fclose(listbuku);
@@ -245,6 +246,7 @@ void stylemenu(){
         printf("Press enter to exit the program...\n");
         getchar();getchar();
         system("CLS");
+        acc = false;
         exit(0);
         default:    
         break;
@@ -272,6 +274,9 @@ void registration (){
     fprintf(userData, "#%s\n", password);
 
     fclose(userData);
+
+    printf("Access granted\n");
+    acc = true;
 }
 
 void login(){
@@ -308,15 +313,50 @@ void login(){
 
         if (userNameCmp == 0 && passwordCmp == 0)
         {
-            printf("Access granted");
+            printf("Access granted\n");
+            acc = true;
             break;
         }
     }
 
-    if (userNameCmp != 0 || passwordCmp != 0) {printf("Access denied\n");}
+    if (userNameCmp != 0 || passwordCmp != 0) {
+        printf("Access denied\n");
+        acc = false;
+    }
 }
 
 void main(){
+    int accChoice;
+
+    printf("|================================|\n");
+    printf("|  1. Login                      |\n");
+    printf("|  2. Register                   |\n");
+    printf("|  Choose your option (1 or 2)   |\n");
+    printf("|                                |\n");
+    printf("|  Press other key to exit       |\n");
+    printf("|================================|\n");
+    scanf("%d", &accChoice);
+
+    switch (accChoice)
+    {
+    case 1:
+        login();
+        break;
+    case 2:
+        registration();
+        break;
+    default:
+        printf("Ni ai wo wo ai ni\n");
+        printf("bye~\n");
+        exit(0);
+        break;
+    }
+
+    if (acc == true)
+    {
+        stylemenu();
+    }
+    
     // stylemenu();
     // login();
     // returning();
