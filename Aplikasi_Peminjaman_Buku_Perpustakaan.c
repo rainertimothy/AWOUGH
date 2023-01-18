@@ -113,7 +113,7 @@ void borrow(){
     
     int cmp;
     int days;
-    // char empty = '\0';
+    char empty = "";
     // char read[100];
     // int size = sizeof(borrow);
     // printf("%s\n", borrow);
@@ -127,7 +127,7 @@ void borrow(){
         if (strcmp(singleline, borrow) == 0) {
         fscanf(listbuku, " %[^\n]", singleline);
  
-            strcpy(singleline, "#");
+            strcpy(singleline, empty);
         }
         fprintf(replace, "%s\n", singleline);
             
