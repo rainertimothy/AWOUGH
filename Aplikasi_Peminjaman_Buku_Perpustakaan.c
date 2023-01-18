@@ -11,6 +11,7 @@ FILE *userData;
 FILE *replace;
 int i;
 char ch[100];
+bool acc;
 
 typedef struct{
 
@@ -87,6 +88,57 @@ void insertion()
 }
 
 
+// void borrow(){
+
+//     listbuku = fopen("listbuku.txt", "r"); //Open file 1
+//     replace = fopen("replace.txt", "w+"); // Open file 2
+//     i = 0;
+//     char singleline[100];
+//     char baru[100];
+//     printf("Judul Buku :\n");
+
+//     if(replace == NULL || listbuku == NULL){
+//         printf("Can't open File.");
+//         exit(0);
+//     }
+
+//     //File Reading
+//     while(fscanf(listbuku, " %[^\n]", buku1.judul) != EOF){
+//         printf("%d. %s\n", i + 1, buku1.judul);
+//         i++;
+//     }
+//     printf("\nPlease Choose a book :\n\t>> ");
+//     char borrow[100];
+//     scanf(" %[^\n]", borrow);
+    
+//     int cmp;
+//     int days;
+//     char empty[10] = "";
+//     // char read[100];
+//     // int size = sizeof(borrow);
+//     // printf("%s\n", borrow);
+//     cmp = strcmp(borrow, buku1.judul);
+//     printf("Please enter the days you want to borrow this book\n>>");
+//     scanf("%d", &days);
+
+//     rewind(listbuku);
+//     if(days >= 1 && days <= 14){
+//         while (!feof(listbuku)) {
+//         if (strcmp(singleline, borrow) == 0) {
+//         fscanf(listbuku, " %[^\n]\n", singleline);
+ 
+//             strcpy(singleline, empty);
+//         }
+//         fprintf(replace, "%s\n", singleline);
+            
+//     }
+//     printf("Thanks for borrowing the book!\n");       
+//         }
+    
+//     fclose(listbuku);
+//     fclose(replace);
+//     }
+
 void borrow(){
 
     listbuku = fopen("listbuku.txt", "r"); //Open file 1
@@ -137,8 +189,6 @@ void borrow(){
     fclose(listbuku);
     fclose(replace);
     }
-
-
 
 void returning(){
     listbuku = fopen("listbuku.txt", "r");
@@ -245,6 +295,7 @@ void stylemenu(){
         printf("Press enter to exit the program...\n");
         getchar();getchar();
         system("CLS");
+        acc = false;
         exit(0);
         default:    
         break;
@@ -272,6 +323,9 @@ void registration (){
     fprintf(userData, "#%s\n", password);
 
     fclose(userData);
+
+    printf("Access granted\n");
+    acc = true;
 }
 
 void login(){
@@ -308,21 +362,58 @@ void login(){
 
         if (userNameCmp == 0 && passwordCmp == 0)
         {
-            printf("Access granted");
+            printf("Access granted\n");
+            acc = true;
             break;
         }
     }
 
-    if (userNameCmp != 0 || passwordCmp != 0) {printf("Access denied\n");}
+    if (userNameCmp != 0 || passwordCmp != 0) {
+        printf("Access denied\n");
+        acc = false;
+    }
 }
 
 void main(){
+    int accChoice;
+
+    printf("|================================|\n");
+    printf("|  1. Login                      |\n");
+    printf("|  2. Register                   |\n");
+    printf("|  Choose your option (1 or 2)   |\n");
+    printf("|                                |\n");
+    printf("|  Press other key to exit       |\n");
+    printf("|================================|\n");
+    scanf("%d", &accChoice);
+
+    switch (accChoice)
+    {
+    case 1:
+        login();
+        break;
+    case 2:
+        registration();
+        break;
+    default:
+        printf("Ni ai wo wo ai ni\n");
+        printf("bye~\n");
+        exit(0);
+        break;
+    }
+
+    if (acc == true)
+    {
+        stylemenu();
+    }
+    
     // stylemenu();
     // login();
-    returning();
+    // returning();
     // borrow();
 }
 
 void booking(){
 
 }
+
+//note: empty line diganti pake (#), pas returning --> nyari (#) --> strcpy judul yg diinput ke (#)
