@@ -88,7 +88,7 @@ void insertion()
         scanf("%[^\n]", fivestudents.place);
         puts("Insert your log time(hh:mm, dd/mm/yyyy): ");
         scanf("%[^\n]", fivestudents.logTime);
-    fprintf(userlog, "%s#%s\n", fivestudents.name, fivestudents.place);
+    fprintf(userlog, "%s %s %s\n", fivestudents.name, fivestudents.place, fivestudents.logTime);
     fclose(userlog);
 }
 
