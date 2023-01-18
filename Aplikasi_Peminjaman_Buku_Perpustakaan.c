@@ -12,11 +12,13 @@ FILE *replace;
 int i;
 char ch[100];
 bool acc;
+bool limit = false;
 
 typedef struct{
 
     char name[50];
     char place[50];
+    char logTime[50];
 }studentdata;
 
 typedef struct{
@@ -75,7 +77,8 @@ void reading(){
 void insertion()
 {
     studentdata fivestudents;
-    int i;
+    // int i;
+
     userlog = fopen("Userlog.txt", "a");
         puts("Insert name: ");
         getchar();
@@ -83,7 +86,9 @@ void insertion()
         getchar();
         puts("Insert your address: ");
         scanf("%[^\n]", fivestudents.place);
-    fprintf(userlog, "%s %s\n", fivestudents.name, fivestudents.place);
+        puts("Insert your log time(hh:mm, dd/mm/yyyy): ");
+        scanf("%[^\n]", fivestudents.logTime);
+    fprintf(userlog, "%s#%s\n", fivestudents.name, fivestudents.place);
     fclose(userlog);
 }
 
@@ -268,6 +273,9 @@ void stylemenu(){
     printf("|  How would you like to        |\n");
     printf("|  upgrade yourself today:      |\n");
     printf("|                               |\n");
+    printf("|    Don't forget to insert     |\n");
+    printf("|        your userdata!         |\n");
+    printf("|                               |\n");
     printf("|    1. Insert Userdata         |\n");
     printf("|    2. Check Available Books   |\n");
     printf("|    3. Borrow a Book           |\n");
@@ -416,5 +424,3 @@ void main(){
 void booking(){
 
 }
-
-//note: empty line diganti pake (#), pas returning --> nyari (#) --> strcpy judul yg diinput ke (#)
