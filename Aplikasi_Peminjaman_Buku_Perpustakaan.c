@@ -88,6 +88,57 @@ void insertion()
 }
 
 
+// void borrow(){
+
+//     listbuku = fopen("listbuku.txt", "r"); //Open file 1
+//     replace = fopen("replace.txt", "w+"); // Open file 2
+//     i = 0;
+//     char singleline[100];
+//     char baru[100];
+//     printf("Judul Buku :\n");
+
+//     if(replace == NULL || listbuku == NULL){
+//         printf("Can't open File.");
+//         exit(0);
+//     }
+
+//     //File Reading
+//     while(fscanf(listbuku, " %[^\n]", buku1.judul) != EOF){
+//         printf("%d. %s\n", i + 1, buku1.judul);
+//         i++;
+//     }
+//     printf("\nPlease Choose a book :\n\t>> ");
+//     char borrow[100];
+//     scanf(" %[^\n]", borrow);
+    
+//     int cmp;
+//     int days;
+//     char empty[10] = "";
+//     // char read[100];
+//     // int size = sizeof(borrow);
+//     // printf("%s\n", borrow);
+//     cmp = strcmp(borrow, buku1.judul);
+//     printf("Please enter the days you want to borrow this book\n>>");
+//     scanf("%d", &days);
+
+//     rewind(listbuku);
+//     if(days >= 1 && days <= 14){
+//         while (!feof(listbuku)) {
+//         if (strcmp(singleline, borrow) == 0) {
+//         fscanf(listbuku, " %[^\n]\n", singleline);
+ 
+//             strcpy(singleline, empty);
+//         }
+//         fprintf(replace, "%s\n", singleline);
+            
+//     }
+//     printf("Thanks for borrowing the book!\n");       
+//         }
+    
+//     fclose(listbuku);
+//     fclose(replace);
+//     }
+
 void borrow(){
 
     listbuku = fopen("listbuku.txt", "r"); //Open file 1
@@ -113,10 +164,10 @@ void borrow(){
     
     int cmp;
     int days;
-    char empty = "";
-    // char read[100];
-    // int size = sizeof(borrow);
-    // printf("%s\n", borrow);
+    char empty[100] = "";
+    char read[100];
+    int size = sizeof(borrow);
+    printf("%s\n", borrow);
     cmp = strcmp(borrow, buku1.judul);
     printf("Please enter the days you want to borrow this book\n>>");
     scanf("%d", &days);
@@ -124,22 +175,20 @@ void borrow(){
     rewind(listbuku);
     if(days >= 1 && days <= 14){
         while (!feof(listbuku)) {
-        if (strcmp(singleline, borrow) == 0) {
         fscanf(listbuku, " %[^\n]", singleline);
+        if (strcmp(singleline, borrow) == 0) {
  
             strcpy(singleline, empty);
         }
         fprintf(replace, "%s\n", singleline);
             
     }
-    printf("Thanks for borrowing the book!\n");       
+            
         }
     
     fclose(listbuku);
     fclose(replace);
     }
-
-
 
 void returning(){
     listbuku = fopen("listbuku.txt", "r");
@@ -360,7 +409,7 @@ void main(){
     // stylemenu();
     // login();
     // returning();
-    borrow();
+    // borrow();
 }
 
 void booking(){
